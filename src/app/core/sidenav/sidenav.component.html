@@ -5,7 +5,7 @@
     <!-- This is the tree node template for leaf nodes -->
     <mat-tree-node *matTreeNodeDef="let node" matTreeNodePadding class="child-nodes"
                    (click)="rowClicked.emit(node['name'])">
-      <span *ngIf="node.name['rowId'] !== 'addNewData'; else addNewForm">{{node.name['lookUpLabel']}}</span>
+      <span *ngIf="node.name['rowId'] !== 0; else addNewForm">{{node.name['lookUpLabel']}}</span>
       <ng-template #addNewForm>
         <a class="add-new-data" href="javascript:void(0)">ADD NEW DATA</a>
       </ng-template>

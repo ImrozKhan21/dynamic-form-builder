@@ -69,7 +69,7 @@ export class AppComponent implements OnInit {
 
   async setRowsForEachTable(formMetaData) {
     const tablesWithRows = [];
-    const addNewOption = {rowId: 'addNewData', lookUpLabel: 'Add new data'};
+    const addNewOption = {rowId: 0, lookUpLabel: 'Add new data'};
     const allApis = this.getApiCallObservableForEachTable(formMetaData);
     const allTablesResp = await forkJoin(allApis).toPromise();
     allTablesResp.forEach((rowsForTableResp, index) => {

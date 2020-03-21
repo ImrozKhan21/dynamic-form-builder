@@ -15,8 +15,8 @@
     </mat-sidenav>
 
     <mat-sidenav-content>
-      <div class="pages-container" *ngIf="rowId">
-        <cinchy-dynamic-forms [FormId]="formId" [RowId]="rowId!='addNewData' ? rowId : null"></cinchy-dynamic-forms>
+      <div class="pages-container" *ngIf="rowId || rowId===0">
+        <cinchy-dynamic-forms [FormId]="formId" [RowId]="rowId ? rowId : null"></cinchy-dynamic-forms>
       </div>
     </mat-sidenav-content>
   </mat-sidenav-container>
