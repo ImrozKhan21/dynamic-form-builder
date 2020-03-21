@@ -60,7 +60,7 @@ export class AppComponent implements OnInit {
   }
 
   async getAndSetFormTables() {
-    this.formId = this.activatedRoute.snapshot.queryParams['formId'];
+    this.formId = this.activatedRoute.snapshot.queryParams.formId;
     const formsMetaDataResp = this.formId ? await this.appService.getFormMetaDataBasedOnId(this.formId).toPromise()
       : await this.appService.getAllForms().toPromise();
     const formsMetaData = formsMetaDataResp.queryResult.toObjectArray();
@@ -75,8 +75,8 @@ export class AppComponent implements OnInit {
     allTablesResp.forEach((rowsForTableResp, index) => {
       const rowsForTable = rowsForTableResp.queryResult.toObjectArray();
       rowsForTable.push(addNewOption);
-      const tableName = formMetaData[index]['tableName'];
-      const formId = formMetaData[index]['formId'];
+      const tableName = formMetaData[index].tableName;
+      const formId = formMetaData[index].formId;
       tablesWithRows.push({tableName, rowsForTable, formId});
     });
     this.tablesWithRows = tablesWithRows; // Only setting once we get all tables Data
