@@ -1,1 +1,586 @@
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+
+@import '~ngx-toastr/toastr.css';
 /* You can add global styles to this file, and also import other style files */
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+.full-width-element {
+  width: 100%;
+}
+
+.checkbox-hint {
+  font-family: Roboto,"Helvetica Neue",sans-serif;
+  font-size: 12.25px;
+}
+
+.sectionHeaderRow {
+  background-color: #434343;
+  color: white;
+}
+.avoid-clicks {
+  pointer-events: none;
+  cursor: not-allowed;
+}
+.sectionHeader {
+  padding-top: 5px;
+  padding-bottom: 5px;
+  padding-left: 5px;
+  font-size: 20px;
+  font-family: Roboto,"Helvetica Neue",sans-serif;
+}
+
+.formField {
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.header {
+  margin: 0px;
+  font-size: 24px;
+  font-family: Roboto,"Helvetica Neue",sans-serif;
+  margin-bottom: 20px;
+}
+
+.formsCard{
+  margin-bottom: 10px
+}
+.table-bordered {
+  border: 1px solid gray ;
+}
+.btn-dynamic-child {
+  margin-left: 6px;
+  width: 30px;
+  cursor: pointer;
+}
+
+.margin-top{
+  margin-top:20px;
+}
+
+.action-width {
+  width:100px
+}
+
+.primary {
+  color: #3f51b5
+}
+.warn {
+  color:red;
+}
+
+
+.mat-header-child {
+  margin: 0em 0 0.5em 0;
+  font-weight: normal;
+  position: relative;
+  font-size: 12px;
+  line-height: 18px;
+  background: #5a5858;
+  border: 1px solid #fff;
+  padding: 5px 12px;
+  color: white ;
+  border-radius: 0 10px 0 10px;
+  box-shadow: inset 0 0 5px rgba(53,86,129, 0.5);
+  font-family: 'Muli', sans-serif;
+}
+
+.text-left {
+  float:right;
+}
+
+.mat-raised-button{
+  line-height: 30px;
+  width: 77px;
+  color: #252525 ;
+  font-family: Roboto,Arial,Helvetica,sans-serif;
+  font-weight: 500;
+  margin-left: 10px
+}
+
+
+.btnSave {
+  font-family: Roboto, Arial, Helvetica, sans-serif;
+  background-color: #434343;
+  color: white ;
+  margin: 10px;
+}
+
+.divFormButtons {
+  top: 95%;
+  float: center;
+  padding: 10px 10px;
+}
+
+.btnForm {
+  float: right;
+}
+
+.lblSave {
+  color:green;
+}
+
+.lblError {
+  color:red;
+}
+
+.divMessage{ width: 100%;text-align: center}
+.calculatedStyle{
+  color:gray
+}
+
+.ChoiceFilter {
+  width: 100%;
+  padding: 10px;
+  border-bottom:1px solid gray;
+  margin-bottom: 20px;
+}
+body {
+  margin: 0px;font-family: Roboto,"Helvetica Neue",sans-serif ;
+  min-height: 100vh;
+  margin: 0px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+
+/* This ensures that any modal dialogs appear in the center of the screen when running embedded inside of Cinchy */
+::ng-deep .cdk-global-overlay-wrapper {
+  justify-content: center ;
+  align-items: center ;
+}
+
+.full-width-element {
+  .c-btn {
+    background: #fff ;
+    border-bottom: 1px solid gray ;
+    color: #333 ;
+  }
+  .selected-list {
+    .c-list .c-token {
+      background: #0079FE ;
+      .c-label {
+        color: #fff ;
+      }
+      .c-remove svg {
+        fill: #fff ;
+      }
+    }
+    .c-angle-down svg {
+      fill: #333 ;
+    }
+  }
+}
+
+.selected-list .c-angle-up svg {
+  fill: #333 ;
+}
+
+.full-width-element {
+  .dropdown-list ul li:hover {
+    background: #f5f5f5 ;
+  }
+  .arrow-up {
+    border-bottom: 15px solid #fff ;
+  }
+}
+
+.arrow-down {
+  border-bottom: 15px solid #fff ;
+}
+
+.full-width-element {
+  .arrow-2 {
+    border-bottom: 15px solid #ccc ;
+  }
+  .list-area {
+    border: 1px solid #ccc ;
+    background: #fff ;
+    box-shadow: 0px 1px 5px #959595 ;
+  }
+  .select-all {
+    border-bottom: 1px solid #ccc ;
+  }
+  .list-filter {
+    border-bottom: 1px solid #ccc ;
+    .c-search svg, .c-clear svg {
+      fill: #888 ;
+    }
+  }
+  .pure-checkbox input[type="checkbox"]:focus + label:before {
+    border-color: #0079FE ;
+    background-color: #f2f2f2 ;
+  }
+}
+
+.pure-checkbox input[type="checkbox"]:hover + label:before {
+  border-color: #0079FE ;
+  background-color: #f2f2f2 ;
+}
+
+.full-width-element {
+  .pure-checkbox input {
+    &[type="checkbox"] {
+      + label {
+        color: #000 ;
+        &:before {
+          color: #0079FE;
+          border: 2px solid #0079FE;
+        }
+        &:after {
+          background-color: #0079FE ;
+        }
+      }
+      &:disabled {
+        + label:before {
+          border-color: #cccccc ;
+        }
+        &:checked + label:before {
+          background-color: #cccccc;
+        }
+      }
+      + label:after {
+        border-color: #ffffff ;
+      }
+    }
+    &[type="radio"]:checked + label:before {
+      background-color: white ;
+    }
+    &[type="checkbox"]:checked + label:before {
+      background: #0079FE ;
+    }
+  }
+  .selected-item {
+    background: #e9f4ff ;
+  }
+  .btn-iceblue {
+    background: #0079FE ;
+    border: 1px solid #ccc ;
+    color: #fff ;
+  }
+  .c-token {
+    background-color: red ;
+  }
+}
+
+.divMarginBottom {
+  margin-bottom: 5px;
+}
+.divMarginBottomHeader{
+  margin-bottom: 10px;
+}
+
+.linkField .ngx-select__clear.btn.btn-link.pull-right.float-right {
+  font-size: 10px;
+}
+
+.linkField .ng-star-inserted {
+  font-size: 1rem ;
+  line-height: 1.5 ;
+}
+
+.btn-secondary {
+  color: #fff;
+  background-color: #007BFF;
+  border-color: #007BFF;
+  padding: 1px 12px;
+  font-size: 13px;}
+.btn-secondary:hover {
+  color: #fff;
+  background-color: #007BFF;
+  border-color: #007BFF;
+  padding: 1px 12px;  font-size: 13px;}
+.ngx-select_multiple .ngx-select__clear {
+  color: white ;  opacity: 1  ;
+  font-size: 10px  ;
+}
+.logo-img {
+  vertical-align: middle;
+  border-style: none;
+  width: 100%;
+  height: 54px;
+}
+.sideLinks {
+  color: #fff;
+  padding: 10px;
+}
+.row{
+  margin-right: 0px ;
+  margin-left: 0px
+}
+.logoHeader .col-md-3 {
+  padding-left: 0px ;
+  width: 20% ;
+  flex: 0 0 21% ;
+}
+.input-group.input-group-unstyled input.form-control {
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  border-radius: 4px;
+}
+.cinchySidebar  {
+  padding-left: 0px ;
+  padding-right: 0px ;
+}
+.input-group-addon {
+  border-radius: 0px 5px 5px 4px;
+  border: 7px solid gray;
+  background-color: transparent;
+  padding: 0px 6px ;
+  color: white;
+  background: gray;
+}
+.sideChildLinks {
+  padding-left: 10px;
+  a{
+    color: white;
+    text-decoration: underline;
+  }
+}
+.SourceHeading {
+  font-size: 20px;
+
+}
+
+.mat-input-element {
+  display: block ;
+  width: 100% ;
+  padding: .375rem .75rem ;
+  font-size: 1rem ;
+  line-height: 1.5 ;
+  color: #495057 ;
+  background-color: #fff ;
+  background-clip: padding-box ;
+  border: 1px solid #ced4da ;
+  border-radius: .25rem ;
+  transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out ;
+}
+.table-bordered {
+  border: 1px solid gray ;
+}
+
+//Remove Default underline
+
+/* To remove the default underline */
+.mat-input-underline.mat-form-field-underline {
+  background: transparent;
+}
+
+/* To remove the underline ripple */
+.mat-input-ripple.mat-form-field-ripple{
+  background-color: transparent;
+}
+
+.table-bordered th,.table-bordered td {
+  border: 1px solid gray ;
+}
+
+.ngx-select__item_active[_ngcontent-c6] {
+  background-color: gray ;
+}
+
+.mat-checkbox-checked.mat-accent .mat-checkbox-background, .mat-checkbox-indeterminate.mat-accent .mat-checkbox-background {
+  background-color: gray;
+}
+
+.activeSource {
+  color: #ff7373 ;
+}
+
+.search-icon {
+  float: right;
+  display: none;
+  padding: 2px;
+  padding-right: 20px;
+}
+
+.sideLinks li:hover .search-icon  {
+  display: block ;
+}
+
+.search-control {
+  padding: 2px 8px ;
+}
+
+.btn-search {
+  color: white;
+  background: gray;
+}
+
+button.btn.btn-secondary.btn-search {
+  border: none;
+}
+
+button.btn.btn-secondary.btn-search:hover {
+  border: none;
+  color: white;
+  background: gray;
+}
+
+.fa-refresh {
+  float: right ;
+  padding-top: 7px;
+  cursor: pointer;
+}
+
+.form-control:focus {
+  border-color: #434343 ;
+  box-shadow: none;
+  border-width: 1px;
+}
+
+mat-panel-title.mat-expansion-panel-header-title {
+  color: black ;
+}
+
+.ngx-select__item_active{
+  background: #434343
+}
+
+
+.mat-form-field-appearance-legacy .mat-form-field-underline,
+.mat-form-field-appearance-legacy .mat-form-field-ripple,
+.mat-form-field-appearance-legacy.mat-focused
+.mat-form-field-underline,
+.mat-form-field-appearance-legacy.mat-focused
+.mat-form-field-ripple {
+  background-color: white;
+}
+
+.table-responsive {
+  width: 100%;
+  overflow-x: scroll;
+}
+
+/*Tabs*/
+
+// .mat-tab-label-container {
+
+//  background: gray ;
+// }
+
+.mat-tab-label .mat-tab-label-content {
+  color: #fff ;
+}
+
+.mat-tab-group.mat-primary .mat-ink-bar, .mat-tab-nav-bar.mat-primary .mat-ink-bar {
+  background-color: red;
+}
+
+.mat-tab-labels {
+  //  display: flex;
+  // background: gray;
+}
+
+.mat-tab-label-active {
+  background: #434343 ;
+  opacity: 9 ;
+}
+.mat-tab-label:focus{
+  background: #434343 ;
+}
+article label {
+  margin-bottom: 8px ;
+}
+
+.mat-dialog-title {
+  margin: 0 0 5px ;
+}
+.mat-dialog-actions{
+  padding-top: 10px ;
+  padding-bottom: 24px ;;
+}
+
+.mat-checkbox-layout .mat-checkbox-label {
+  line-height: 24px;
+  color: rgba(0,0,0,.54);
+  font-size: 13px;
+}
+.checkBoxMargin{
+  margin-top: 10px;
+  margin-bottom: 5px;
+}
+
+.mat-expansion-panel-header.mat-expanded:focus, .mat-expansion-panel-header.mat-expanded:hover {
+  background: none ;
+}
+
+.mat-expansion-panel-header-title h5{
+  margin-bottom: 0px;
+}
+.divMarginBottom{
+  margin-bottom: 8px;
+}
+.divMarginBottomHeader{
+  margin-bottom: 15px;
+  padding:2px 6px;
+}
+.sectionHeader[_ngcontent-c6]{
+  font-size: 18px ;
+}
+.mat-checkbox label{
+  margin-bottom: 0px;
+}
+.mat-card{
+  padding-bottom: 0px ;
+}
+.mat-input-element:focus {
+  outline: none;
+  border-width: 1.5px;
+  border-color: #434343
+}
+.mat-tab-label{
+  border-right:1px solid #fff;
+  background-color: grey;
+  // border-top-left-radius:12px;
+  // border-top-right-radius: 12px;
+  width: 25%;
+}
+.mat-ink-bar{display: none}
+.mat-tab-label-active{background-color: #434343;border-bottom: 2px solid red;}
+.table-bordered th{
+  background-color: #ccc;
+  text-align: center;
+  font-size: 13px;
+}
+.table-bordered td{
+  font-weight: normal;
+  text-align: center;
+}
+.mat-header-child[_ngcontent-c6] {
+  font-size: 14px ;
+}
+.formMainDiv {
+  background-color: #f1f1f1;
+  display: flow-root;
+}
+
+.cinchy-label
+{
+  color: rgba(0,0,0,.54);
+  font-size: 13px;
+}
+
+
+.mat-card-header-child {
+  margin: 0em 0 0.5em 0;
+  font-weight: normal;
+  position: relative;
+  font-size: 12px;
+  line-height: 18px;
+  background: #5a5858;
+  border: 1px solid #fff;
+  padding: 5px 12px;
+  color: white ;
+  border-radius: 0 10px 0 10px;
+  box-shadow: inset 0 0 5px rgba(53,86,129, 0.5);
+  font-family: 'Muli', sans-serif;
+}
+
+button.btnSave.mat-raised-button {
+  margin-right: 10px;
+}
+
+.btnDiv {
+  margin-top: 10px;
+}

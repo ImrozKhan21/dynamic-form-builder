@@ -1,0 +1,62 @@
+.sidenav {
+  width: 180px;
+  padding: 20px;
+  transition: all 0.3s;
+  z-index: 9999;
+  box-shadow: 23px 0px 5px -15px rgba(0, 0, 0, 0.75);
+
+  img {
+    display: block;
+    margin: auto;
+    height: 90px;
+    width: 75px;
+  }
+
+  .sidenav-options {
+    color: white;
+    font-size: 16px;
+    margin-top: 50px;
+
+    .sidenav-option {
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+
+      img {
+        height: 25px;
+        margin-right: 10px;
+        width: 25px;
+      }
+    }
+  }
+}
+
+.mat-tree {
+  width: 180px;
+  margin-top: 20px;
+  margin-left: -20px;
+}
+
+.mat-tree-node {
+  min-height: 32px;
+  border: 1px solid gainsboro;
+}
+
+.child-nodes {
+  background-color: #005daa;
+  color: #fedf01;
+  cursor: pointer;
+  span{
+    display: inline-block;
+    margin-left: 15px;
+  }
+  .add-new-data{
+    color: white;
+  }
+}
+
+.parent-nodes{
+  background-color: #434343;
+  color: #fedf01;
+}
