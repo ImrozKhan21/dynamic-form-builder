@@ -16,7 +16,7 @@ const cinchyConfig: CinchyConfig = {
   cinchyRootUrl: 'http://qa.cinchy.co/cinchy-4.7_BuildNo-1816-CI/Cinchy',  // The redirect url after logging in
   // The client id for your applet
   clientId: 'deals-sheet',
-  redirectUri: 'http://localhost:3000/'
+  redirectUri: 'https://dynamic-form-builder.herokuapp.com/'
 };
 
 export const environment = {
