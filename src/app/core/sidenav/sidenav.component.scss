@@ -25,11 +25,12 @@
       padding-left: 10px;
       border-radius: 4px;
       border: 1px solid;
-      margin-right: 3px;
+      background-color: #fedf01;
+      color: #434343;
 
       &:focus {
-        background-color: #fedf01;
-        color: #434343;
+        background-color: #434343;
+        color: #fedf01;
         height: 60px;
         -webkit-transition: height 0.25s;
         -moz-transition: height 0.25s;
@@ -38,8 +39,8 @@
       }
 
       &:hover {
-        background-color: #fedf01;
-        color: #434343;
+        background-color: #434343;
+        color: #fedf01;
       }
     }
   }

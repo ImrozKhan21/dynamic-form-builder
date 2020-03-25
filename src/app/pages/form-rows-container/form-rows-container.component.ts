@@ -13,9 +13,7 @@ import {MediaMatcher} from '@angular/cdk/layout';
   styleUrls: ['./form-rows-container.component.scss']
 })
 export class FormRowsContainerComponent implements OnInit {
-
   mobileQuery: MediaQueryList;
-  fullScreenHeight = 400;
   rowsForTable;
   tableName: string;
   formId: number;
@@ -43,7 +41,6 @@ export class FormRowsContainerComponent implements OnInit {
   async getAndSetFormTables() {
     this.spinner.show();
     this.formId = this.appService.formId;
-    console.log('FORM IF', this.formId);
     const formsMetaDataResp = await this.appService.getFormMetaDataBasedOnId(this.formId).toPromise();
     const formsMetaData = formsMetaDataResp.queryResult.toObjectArray();
     this.setRowsForEachTable(formsMetaData);
@@ -51,12 +48,10 @@ export class FormRowsContainerComponent implements OnInit {
 
   async setRowsForEachTable(formMetaData) {
     const tablesWithRows = [];
-    //   const addNewOption = {rowId: 0, lookUpLabel: 'Add new data'};
-    const allApis = this.getApiCallObservableForEachTable(formMetaData);
+    const allApis = this.getApiCallObservableForEachTable(formMetaData); // Currently we will only have one as it is based on formId
     const allTablesResp = await forkJoin(allApis).toPromise();
     allTablesResp.forEach((rowsForTableResp, index) => {
       const rowsForTable = rowsForTableResp.queryResult.toObjectArray();
-      //    rowsForTable.push(addNewOption);
       this.tableName = formMetaData[index].tableName;
       const formId = formMetaData[index].formId;
       tablesWithRows.push({tableName: this.tableName, rowsForTable, formId});
