@@ -1,6 +1,5 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {FlatTreeControl} from '@angular/cdk/tree';
-import {MatTreeFlattener, MatTreeFlatDataSource} from '@angular/material';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-sidenav',
@@ -9,38 +8,31 @@ import {MatTreeFlattener, MatTreeFlatDataSource} from '@angular/material';
 })
 export class SidenavComponent implements OnInit {
   @Input() optionsContainerTitle;
+
   @Input('options') set options(options) {
     this.setSideBarRowsData(options);
   }
 
   @Output() rowClicked = new EventEmitter();
-  dataSource;
-  treeFlattener;
-  treeControl;
-  transformer = (node, level: number) => {
-    return {
-      expandable: !!node.children && node.children.length > 0,
-      name: node.name,
-      level,
-    };
-  }
-  hasChild = (_: number, node: any) => node.expandable;
+  data;
+  addNewOption;
 
-  constructor() {
+  constructor(private router: Router) {
   }
 
   ngOnInit(): void {
   }
 
   setSideBarRowsData(options) {
-    if (options) {
-      this.treeControl = new FlatTreeControl<any>(node => node.level, node => node.expandable);
-      this.treeFlattener = new MatTreeFlattener(
-        this.transformer, node => node.level, node => node.expandable, node => node.children);
-      this.dataSource = new MatTreeFlatDataSource(this.treeControl, this.treeFlattener);
-      this.dataSource.data = options.map(item => ({name: item.tableName,
-        children: item.rowsForTable.map(row => ({name: {...row, formId: item.formId}}))}));
+    if (options && options[0]) {
+      const firstFormValues = options[0];
+      this.addNewOption = {formId: firstFormValues.formId, rowId: 'addNewData', lookUpLabel: ''};
+      this.data = firstFormValues.rowsForTable.map(item => ({formId: firstFormValues.formId, ...item}));
     }
+  }
+
+  backToAllForms() {
+    this.router.navigate(['/all-forms']);
   }
 
 }

@@ -5,6 +5,7 @@ import {CinchyService} from '@cinchy-co/angular-sdk';
   providedIn: 'root'
 })
 export class AppService {
+  formId;
 
   constructor(private cincyService: CinchyService) {
   }
@@ -31,7 +32,7 @@ export class AppService {
     WHERE  [Deleted] IS NULL and [Form ID] = @formId
 `;
     const params = {
-      '@formId': formId
+      '@formId': formId.toString()
     };
     return this.cincyService.executeCsql(formDataQuery, params);
   }
@@ -41,6 +42,7 @@ export class AppService {
     const tableRowsDataQuery = `
     SELECT [Cinchy Id] as 'rowId', [${lookUpLabel}] as 'lookUpLabel'
     FROM   [${tableDomainName}].[${tableName}]
+    WHERE  [Deleted] IS NULL
 `;
     return this.cincyService.executeCsql(tableRowsDataQuery, null);
   }

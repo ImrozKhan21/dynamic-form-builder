@@ -19,6 +19,8 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatSelectModule} from '@angular/material/select';
 import {MatTabsModule} from '@angular/material/tabs';
 import {MatTreeModule} from '@angular/material/tree';
+import {ScrollingModule} from '@angular/cdk/scrolling';
+
 
 @NgModule({
   imports: [
@@ -43,7 +45,8 @@ import {MatTreeModule} from '@angular/material/tree';
     MatCheckboxModule,
     MatSelectModule,
     MatTabsModule,
-    MatTreeModule
+    MatTreeModule,
+    ScrollingModule
   ],
   declarations: [],
   providers: [],
@@ -69,7 +72,8 @@ import {MatTreeModule} from '@angular/material/tree';
     MatCheckboxModule,
     MatSelectModule,
     MatTabsModule,
-    MatTreeModule
+    MatTreeModule,
+    ScrollingModule
   ]
 })
 

@@ -1,0 +1,15 @@
+<div class="all-forms-container full-height-element" *ngIf="allFormTables">
+  <mat-form-field appearance="outline">
+    <mat-label>Search for the Form</mat-label>
+    <input type="text" matInput
+           [attr.aria-label]="'Search for the Form'"
+           [formControl]="searchControl"/>
+    <mat-icon class="search-icon">search</mat-icon>
+  </mat-form-field>
+
+  <div class="all-forms">
+    <mat-card class="form-card" *ngFor="let table of filteredOptions" (click)="goToForm(table)">
+      <p>{{table.tableName}}</p>
+    </mat-card>
+  </div>
+</div>

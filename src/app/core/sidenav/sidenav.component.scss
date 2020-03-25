@@ -1,9 +1,8 @@
 .sidenav {
-  width: 180px;
-  padding: 20px;
+  width: 220px;
   transition: all 0.3s;
   z-index: 9999;
-  box-shadow: 23px 0px 5px -15px rgba(0, 0, 0, 0.75);
+  box-shadow: 23px 0 5px -15px rgba(0, 0, 0, 0.75);
 
   img {
     display: block;
@@ -13,50 +12,62 @@
   }
 
   .sidenav-options {
-    color: white;
     font-size: 16px;
-    margin-top: 50px;
+    height: 500px;
+    margin-top: 10px;
+    width: 220px;
 
     .sidenav-option {
       cursor: pointer;
       display: flex;
       align-items: center;
-      flex-wrap: wrap;
+      height: 50px;
+      padding-left: 10px;
+      border-radius: 4px;
+      border: 1px solid;
+      margin-right: 3px;
 
-      img {
-        height: 25px;
-        margin-right: 10px;
-        width: 25px;
+      &:focus {
+        background-color: #fedf01;
+        color: #434343;
+        height: 60px;
+        -webkit-transition: height 0.25s;
+        -moz-transition: height 0.25s;
+        -o-transition: height 0.25s;
+        transition: height 0.25s;
+      }
+
+      &:hover {
+        background-color: #fedf01;
+        color: #434343;
       }
     }
   }
-}
 
-.mat-tree {
-  width: 180px;
-  margin-top: 20px;
-  margin-left: -20px;
-}
-
-.mat-tree-node {
-  min-height: 32px;
-  border: 1px solid gainsboro;
-}
-
-.child-nodes {
-  background-color: #005daa;
-  color: #fedf01;
-  cursor: pointer;
-  span{
-    display: inline-block;
-    margin-left: 15px;
-  }
-  .add-new-data{
+  .add-data {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     color: white;
-  }
-}
+    padding: 10px;
 
-.parent-nodes{
-  background-color: #434343;
-  color: #fedf01;
+    span {
+      font-size: 24px;
+    }
+
+    mat-icon {
+      cursor: pointer;
+      background-color: #434343;
+      color: #fedf01;
+    }
+  }
+
+  .back-btn{
+    background-color: #fedf01;
+    color: #434343;
+    margin: 40px 0 0 25px;
+    height: 40px;
+    width: 170px;
+  }
 }

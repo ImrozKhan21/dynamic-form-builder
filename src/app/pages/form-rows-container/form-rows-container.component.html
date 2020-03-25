@@ -1,0 +1,25 @@
+<div class="rbc-ops-container full-height-element" *ngIf="formId">
+  <mat-sidenav-container class="sidenav-container" [style.marginTop.px]="mobileQuery.matches ? 56 : 0">
+    <mat-sidenav class="side-nav" #sidenav [mode]="mobileQuery.matches ? 'over' : 'side'" [opened]="true"
+                 [fixedInViewport]="mobileQuery.matches" fixedTopGap="56">
+      <app-sidenav [options]="tablesWithRows"
+                   [optionsContainerTitle]="tableName"
+                   (rowClicked)="getRowData($event)"></app-sidenav>
+    </mat-sidenav>
+
+    <mat-sidenav-content>
+      <ngx-spinner></ngx-spinner>
+      <div class="pages-container" *ngIf="formId"> <!-- 0 for new form-->
+        <ng-container *ngIf="!pageState.saved; else saved">
+          <cinchy-dynamic-forms [FormId]="formId" [RowId]="rowId ? rowId : null"
+                                (EventHandler)="eventHappenedInForms($event)"
+                                (cancelClicked)="cancel()">
+          </cinchy-dynamic-forms>
+        </ng-container>
+        <ng-template #saved>
+          <h1>Awesome! Your Data has been Saved</h1>
+        </ng-template>
+      </div>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+</div>

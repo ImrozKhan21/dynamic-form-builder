@@ -1,0 +1,11 @@
+.expansion-collapse-wrapper{
+  mat-panel-title.mat-expansion-panel-header-title, .mat-expansion-panel-header:hover, .mat-expansion-indicator::after,
+  .mat-expansion-panel-header.mat-expanded:focus, .mat-expansion-panel-header.mat-expanded:hover, .mat-expansion-indicator {
+    background-color: #434343 !important;
+    color: white !important;
+  }
+
+  .mat-panel-title, .mat-icon {
+    color: white;
+  }
+}

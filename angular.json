@@ -31,7 +31,10 @@
               "src/styles.scss",
               "./node_modules/font-awesome/scss/font-awesome.scss"
             ],
-            "scripts": []
+            "scripts": [
+              "./node_modules/iframe-resizer/js/iframeResizer.js",
+              "./node_modules/iframe-resizer/js/iframeResizer.contentWindow.js"
+            ]
           },
           "configurations": {
             "production": {
@@ -96,7 +99,10 @@
               "src/styles.scss",
               "./node_modules/font-awesome/scss/font-awesome.scss"
             ],
-            "scripts": []
+            "scripts": [
+              "./node_modules/iframe-resizer/js/iframeResizer.js",
+              "./node_modules/iframe-resizer/js/iframeResizer.contentWindow.js"
+            ]
           }
         },
         "lint": {

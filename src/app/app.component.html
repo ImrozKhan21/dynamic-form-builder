@@ -1,23 +1,4 @@
-<div class="rbc-ops-container full-height-element" [class.is-mobile]="mobileQuery.matches">
+<div class="full-height-element">
   <!--[style.height.px]="fullScreenHeight"-->
-  <mat-toolbar color="primary" class="toolbar">
-    <button mat-icon-button (click)="sidenav.toggle()">
-      <mat-icon>menu</mat-icon>
-    </button>
-    <p>ROYAL BANK</p>
-  </mat-toolbar>
-
-  <mat-sidenav-container class="sidenav-container" [style.marginTop.px]="mobileQuery.matches ? 56 : 0">
-    <mat-sidenav class="side-nav" #sidenav [mode]="mobileQuery.matches ? 'over' : 'side'" [opened]="true"
-                 [fixedInViewport]="mobileQuery.matches" fixedTopGap="56">
-      <app-sidenav [options]="tablesWithRows"
-                   (rowClicked)="getRowData($event)"></app-sidenav>
-    </mat-sidenav>
-
-    <mat-sidenav-content>
-      <div class="pages-container" *ngIf="rowId || rowId===0">
-        <cinchy-dynamic-forms [FormId]="formId" [RowId]="rowId ? rowId : null"></cinchy-dynamic-forms>
-      </div>
-    </mat-sidenav-content>
-  </mat-sidenav-container>
+  <router-outlet></router-outlet>
 </div>

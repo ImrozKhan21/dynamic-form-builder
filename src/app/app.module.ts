@@ -5,7 +5,6 @@ import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
 
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-
 import {AngularFontAwesomeModule} from 'angular-font-awesome';
 import {FilterPipeModule} from 'ngx-filter-pipe';
 import {CinchyConfig, CinchyModule, CinchyService} from '@cinchy-co/angular-sdk';
@@ -17,6 +16,7 @@ import {CustomMaterialModule} from './custom-material.module';
 import {environment} from '../environments/environment';
 import {CinchyDynamicFormsModule} from './cinchy-dynamic-forms/cinchy-dynamic-forms.module';
 import {CoreModule} from './core/core.module';
+import {PagesModule} from './pages/pages.module';
 
 const CustomSelectOptions: INgxSelectOptions = { // Check the interface for more options
   optionValueField: 'id',
@@ -42,6 +42,7 @@ const CustomSelectOptions: INgxSelectOptions = { // Check the interface for more
     NgxSelectModule.forRoot(CustomSelectOptions),
     NgxSpinnerModule,
     CustomMaterialModule,
+    PagesModule,
     ToastrModule.forRoot({
       timeOut: 5000,
       closeButton: true,

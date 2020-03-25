@@ -11,33 +11,40 @@ import { IQuery } from './models/cinchy-query.model';
 import { FormField } from './models/cinchy-form-field.model';
 import { ResponseType } from './enums/response-type.enum';
 import { IEventCallback, EventCallback } from './models/cinchy-event-callback.model';
+import {NgxSpinnerService} from 'ngx-spinner';
 
 @Component({
   selector: 'cinchy-dynamic-forms',
   template: `
   <form *ngIf='form != null'>
   <div *ngFor='let section of form.sections'>
-    <div class='sectionHeaderRow divMarginBottomHeader'>
-      <div class='sectionHeader'>{{ section.label }}</div>
-    </div>
-    <div *ngFor='let field of section.fields; let idx = index'>
-      <div class='formField'>
-      <cinchy-checkbox [field]='field'></cinchy-checkbox>
-      <cinchy-link [targetTableName] = "form.targetTableName" [field]='field'
-      (eventHandler)="handleFieldsEvent($event)"></cinchy-link>
-      <cinchy-textarea (eventHandler)="handleFieldsEvent($event)"
-      [targetTableName] = "form.targetTableName" [field]='field'></cinchy-textarea>
-      <cinchy-textbox [targetTableName] = "form.targetTableName" [field]='field'
-      (eventHandler)="handleFieldsEvent($event)" ></cinchy-textbox>
-      <cinchy-calculated [field]='field'></cinchy-calculated>
-      <cinchy-number [field]='field'></cinchy-number>
-      <cinchy-childform-table [field]='field' (childform)='openChildForm($event)'></cinchy-childform-table>
-      </div>
-    </div>
+      <mat-accordion class="expansion-collapse-wrapper">
+        <mat-expansion-panel [expanded]="true">
+          <mat-expansion-panel-header class='sectionHeaderRow divMarginBottomHeader'>
+            <mat-panel-title>
+              <div class='sectionHeader'>{{ section.label }}</div>
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+          <div *ngFor='let field of section.fields; let idx = index'>
+            <div class='formField'>
+              <cinchy-checkbox [field]='field'></cinchy-checkbox>
+              <cinchy-link [targetTableName] = "form.targetTableName" [field]='field'
+                           (eventHandler)="handleFieldsEvent($event)"></cinchy-link>
+              <cinchy-textarea (eventHandler)="handleFieldsEvent($event)"
+                               [targetTableName] = "form.targetTableName" [field]='field'></cinchy-textarea>
+              <cinchy-textbox [targetTableName] = "form.targetTableName" [field]='field'
+                              (eventHandler)="handleFieldsEvent($event)" ></cinchy-textbox>
+              <cinchy-calculated [field]='field'></cinchy-calculated>
+              <cinchy-number [field]='field'></cinchy-number>
+              <cinchy-childform-table [field]='field' (childform)='openChildForm($event)'></cinchy-childform-table>
+            </div>
+          </div>
+        </mat-expansion-panel>
+      </mat-accordion>
   </div>
   <div class='btnDiv'>
     <button mat-raised-button class='btnSave' (click)='saveForm(form, RowId)'>Save</button>
-    <button mat-raised-button>Cancel</button>
+    <button mat-raised-button (click)="cancelClicked.emit()">Cancel</button>
   </div>
 </form>
   `,
@@ -49,6 +56,7 @@ export class CinchyDynamicFormsComponent implements OnInit, OnChanges {
   @Input() FormId: number;
   @Input() CallbackEventResponse: any;
   @Output() EventHandler = new EventEmitter<any>();
+  @Output() cancelClicked = new EventEmitter<any>();
   formFieldMetadataResult: any;
   private parentTableId: number = 0;
   form: IForm = null;
@@ -60,21 +68,16 @@ export class CinchyDynamicFormsComponent implements OnInit, OnChanges {
   public unique = [];
   public childForms: any;
   public tableEntitlements: any;
-  constructor(private _dialog: MatDialog, private _cinchyService: CinchyService) {
+  constructor(private _dialog: MatDialog, private _cinchyService: CinchyService,
+              private spinner: NgxSpinnerService) {
   }
   ngOnInit() {
   }
   //#region Get Form Meta Data On Change of the Library
   ngOnChanges() {
-    console.log('ON CHANGE', this.RowId);
-    if(!isNullOrUndefined(this.CallbackEventResponse)) {
-      console.log('CALL BACK RESP', this.CallbackEventResponse);
-      this.handleCallbackResponse(this.CallbackEventResponse);
-    }
-    else {
-      this.childDataForm = [];
-      this.getFormMetaData();
-    }
+    console.log('ON CHANGE', this.RowId, this.CallbackEventResponse);
+    this.childDataForm = [];
+    this.getFormMetaData();
   }
   //#endregion 
   //#region Edit Add Child Form Data
@@ -261,9 +264,11 @@ export class CinchyDynamicFormsComponent implements OnInit, OnChanges {
             this.tableEntitlements = response;
             this.getForm(this.FormId).then((res) => {
               this.form = res;
+              this.spinner.hide();
             });
           },
           error => {
+            this.spinner.hide();
             console.log(error);
           });
       }
@@ -377,14 +382,18 @@ export class CinchyDynamicFormsComponent implements OnInit, OnChanges {
     const insertQuery: IQuery = formdata.generateSaveQuery(_RowId);
     //execute dynamic query.
     console.log(JSON.stringify(insertQuery));
-    this._cinchyService.executeCsql(insertQuery.query, insertQuery.params).subscribe(
+      this.spinner.show();
+      this._cinchyService.executeCsql(insertQuery.query, insertQuery.params).subscribe(
       response => {
         console.log(response);
         let RowId = null;
         RowId = this.saveMethodLogic(RowId, response);
+        this.spinner.hide();
         // pass response to the project on data save
       },
       error => {
+        this.spinner.hide();
+
         console.error('Error in cinchy-dynamic-forms save method', error);
         let Data = {
           'Error': error,

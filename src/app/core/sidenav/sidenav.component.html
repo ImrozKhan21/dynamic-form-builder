@@ -1,23 +1,17 @@
 <div class="sidenav">
-  <img src="./assets/images/rbc-logo-shield.svg" alt="Cinchy Logo">
 
-  <mat-tree *ngIf="dataSource" [dataSource]="dataSource" [treeControl]="treeControl">
-    <!-- This is the tree node template for leaf nodes -->
-    <mat-tree-node *matTreeNodeDef="let node" matTreeNodePadding class="child-nodes"
-                   (click)="rowClicked.emit(node['name'])">
-      <span *ngIf="node.name['rowId'] !== 0; else addNewForm">{{node.name['lookUpLabel']}}</span>
-      <ng-template #addNewForm>
-        <a class="add-new-data" href="javascript:void(0)">ADD NEW DATA</a>
-      </ng-template>
-    </mat-tree-node>
-    <!-- This is the tree node template for expandable nodes -->
-    <mat-tree-node *matTreeNodeDef="let node;when: hasChild" matTreeNodePadding class="parent-nodes">
-      <button mat-icon-button matTreeNodeToggle [attr.aria-label]="'toggle ' + node.name">
-        <mat-icon class="mat-icon-rtl-mirror">
-          {{treeControl.isExpanded(node) ? 'expand_more' : 'chevron_right'}}
-        </mat-icon>
-      </button>
-      {{node.name}}
-    </mat-tree-node>
-  </mat-tree>
+  <div *ngIf="data">
+    <div class="add-data">
+      <span>{{optionsContainerTitle}}</span>
+      <mat-icon (click)="rowClicked.emit(addNewOption)">add_box</mat-icon>
+    </div>
+
+    <cdk-virtual-scroll-viewport itemSize="50" class="sidenav-options">
+      <div *cdkVirtualFor="let item of data" class="sidenav-option" (click)="rowClicked.emit(item)" tabindex="1">
+        {{item.lookUpLabel}}
+      </div>
+    </cdk-virtual-scroll-viewport>
+
+    <button class="back-btn mat-raised-button" (click)="backToAllForms()">Back to All Forms</button>
+  </div>
 </div>
