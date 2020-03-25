@@ -2,7 +2,7 @@
   <mat-sidenav-container class="sidenav-container" [style.marginTop.px]="mobileQuery.matches ? 56 : 0">
     <mat-sidenav class="side-nav" #sidenav [mode]="mobileQuery.matches ? 'over' : 'side'" [opened]="true"
                  [fixedInViewport]="mobileQuery.matches" fixedTopGap="56">
-      <app-sidenav [options]="tablesWithRows"
+      <app-sidenav [options]="tablesWithRows" [selectedRow]="selectedRow"
                    [optionsContainerTitle]="tableName"
                    (rowClicked)="getRowData($event)"></app-sidenav>
     </mat-sidenav>

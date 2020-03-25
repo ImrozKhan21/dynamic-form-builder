@@ -66,7 +66,6 @@ export class AllFormsComponent implements OnInit {
   }
 
   goToForm(table) {
-    console.log('table', table);
     this.appService.formId = table.formId;
     this.router.navigate(['/form-rows']);
   }

@@ -32,7 +32,7 @@ export class AppService {
     WHERE  [Deleted] IS NULL and [Form ID] = @formId
 `;
     const params = {
-      '@formId': formId.toString()
+      '@formId': formId ? formId.toString() : null
     };
     return this.cincyService.executeCsql(formDataQuery, params);
   }
@@ -43,6 +43,8 @@ export class AppService {
     SELECT [Cinchy Id] as 'rowId', [${lookUpLabel}] as 'lookUpLabel'
     FROM   [${tableDomainName}].[${tableName}]
     WHERE  [Deleted] IS NULL
+    ORDER BY [${lookUpLabel}] ASC
+
 `;
     return this.cincyService.executeCsql(tableRowsDataQuery, null);
   }

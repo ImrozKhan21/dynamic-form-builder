@@ -6,9 +6,17 @@
       <mat-icon (click)="rowClicked.emit(addNewOption)">add_box</mat-icon>
     </div>
 
+
+    <div class="search-input">
+      <input type="text" placeholder="Search..." [formControl]="searchControl"/>
+      <mat-icon class="search-icon">search</mat-icon>
+    </div>
+
     <cdk-virtual-scroll-viewport itemSize="50" class="sidenav-options">
-      <div *cdkVirtualFor="let item of data" class="sidenav-option" (click)="rowClicked.emit(item)" tabindex="1">
-        {{item.lookUpLabel}}
+      <div *cdkVirtualFor="let item of filteredOptions; trackBy: trackByFn" class="sidenav-option"
+           (click)="rowSelected(item)" tabindex="1">
+        <span>{{item.lookUpLabel}}</span>
+        <mat-icon *ngIf="selectedRow && (item.rowId == selectedRow.rowId)" >check_circle</mat-icon>
       </div>
     </cdk-virtual-scroll-viewport>
 

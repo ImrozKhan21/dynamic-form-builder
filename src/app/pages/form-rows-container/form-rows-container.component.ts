@@ -21,6 +21,7 @@ export class FormRowsContainerComponent implements OnInit {
   tablesWithRows = [];
   pageState = {showError: false, showLoader: false, saved: false};
   callbackResponse: any;
+  selectedRow;
   private mobileQueryListener: () => void;
 
   constructor(private cinchyService: CinchyService, private router: Router,
@@ -41,9 +42,13 @@ export class FormRowsContainerComponent implements OnInit {
   async getAndSetFormTables() {
     this.spinner.show();
     this.formId = this.appService.formId;
-    const formsMetaDataResp = await this.appService.getFormMetaDataBasedOnId(this.formId).toPromise();
-    const formsMetaData = formsMetaDataResp.queryResult.toObjectArray();
-    this.setRowsForEachTable(formsMetaData);
+    if (this.formId) {
+      const formsMetaDataResp = await this.appService.getFormMetaDataBasedOnId(this.formId).toPromise();
+      const formsMetaData = formsMetaDataResp.queryResult.toObjectArray();
+      this.setRowsForEachTable(formsMetaData);
+    } else {
+      this.router.navigate(['/all-forms']);
+    }
   }
 
   async setRowsForEachTable(formMetaData) {
@@ -72,6 +77,7 @@ export class FormRowsContainerComponent implements OnInit {
   }
 
   getRowData(rowClicked) {
+    this.selectedRow = rowClicked;
     this.spinner.show();
     this.pageState.saved = false;
     this.formId = rowClicked.formId;
@@ -88,7 +94,7 @@ export class FormRowsContainerComponent implements OnInit {
       } else {
         // append tr_ text as a prefix
         event.Data.event.target['style'].borderColor = '#ced4da';
-       // event.Data.event.target['value'] = 'tr_' + event.Data.Value;
+        // event.Data.event.target['value'] = 'tr_' + event.Data.Value;
       }
     }
     this.callbackResponse = event;
@@ -97,6 +103,7 @@ export class FormRowsContainerComponent implements OnInit {
   }
 
   cancel() {
+    this.selectedRow = null;
     this.rowId = null;
   }
 
